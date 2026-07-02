@@ -1,4 +1,22 @@
-[
+export interface CarType {
+  id: string;
+  make: string;
+  model: string;
+  year: number;
+  category: string;
+  price: number;
+  fuelType: string;
+  fuelEconomy: string;
+  seats: number;
+  cargoCapacity: string;
+  engine: string;
+  drivetrain: string;
+  keyFeatures: string[];
+  safetyRating: string;
+  description: string;
+}
+
+export const carsData: CarType[] = [
   {
     "id": "honda-civic",
     "make": "Honda",
@@ -373,4 +391,4 @@
     "safetyRating": "Not yet rated",
     "description": "A breathtaking electric grand tourer offering ultra-fast 270kW charging, incredibly luxurious silent cabin design, and high-performance power."
   }
-]
+];

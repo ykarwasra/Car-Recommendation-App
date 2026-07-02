@@ -1,6 +1,6 @@
 import express from "express";
 import { GoogleGenAI, Type } from "@google/genai";
-import carsData from "../src/data/cars.json";
+import { carsData } from "../src/data/cars";
 
 const app = express();
 app.use(express.json());
