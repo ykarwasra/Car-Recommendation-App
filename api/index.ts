@@ -1,6 +1,6 @@
 import express from "express";
 import { GoogleGenAI, Type } from "@google/genai";
-import { carsData } from "../src/data/cars";
+import { carsData } from "./cars";
 
 const app = express();
 app.use(express.json());
@@ -27,7 +27,13 @@ function getGeminiClient(): GoogleGenAI | null {
 
 // Rule-based fallback recommendations when Gemini is unavailable
 function getFallbackRecommendations(preferences: any, cars: any[]) {
-  const { primaryUse, budgetRange, fuelType, category, priority } = preferences;
+  const {
+    primaryUse = "Daily Commute",
+    budgetRange = "$25k - $45k",
+    fuelType = "No Preference",
+    category = "Any",
+    priority = "Comfort & Luxury"
+  } = preferences || {};
 
   // Budget parse
   const getBudgetScore = (price: number) => {
@@ -128,13 +134,13 @@ function getFallbackRecommendations(preferences: any, cars: any[]) {
 }
 
 // API: Get list of all cars
-app.get(["/api/cars", "/cars"], (req, res) => {
+app.get(["*/cars", "/api/cars", "/cars"], (req, res) => {
   res.json(carsData);
 });
 
 // API: Recommend top 3 cars
-app.post(["/api/recommend", "/recommend"], async (req, res) => {
-  const preferences = req.body;
+app.post(["*/recommend", "/api/recommend", "/recommend"], async (req, res) => {
+  const preferences = req.body || {};
   const ai = getGeminiClient();
 
   if (!ai) {
