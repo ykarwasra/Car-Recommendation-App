@@ -1,0 +1,6 @@
+{
+  "name": "AI Car Recommendation Assistant",
+  "description": "An AI-powered car recommendation assistant that asks tailored questions to find and suggest the best three cars with comprehensive reasoning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
