@@ -128,12 +128,12 @@ function getFallbackRecommendations(preferences: any, cars: any[]) {
 }
 
 // API: Get list of all cars
-app.get("/api/cars", (req, res) => {
+app.get(["/api/cars", "/cars"], (req, res) => {
   res.json(carsData);
 });
 
 // API: Recommend top 3 cars
-app.post("/api/recommend", async (req, res) => {
+app.post(["/api/recommend", "/recommend"], async (req, res) => {
   const preferences = req.body;
   const ai = getGeminiClient();
 
